@@ -1,0 +1,37 @@
+graph TD
+    Dev["👨‍💻 Developer"] -->|git push| GitHub["🐙 GitHub Repository"]
+    
+    GitHub -->|Trigger Webhook| Action["⚙️ GitHub Action<br/>.github/workflows"]
+    
+    Action -->|Checkout Code| Checkout["📥 Checkout Repository<br/>Clone latest code"]
+    
+    Checkout -->|Install Deps| Install["📦 Install Dependencies<br/>pip install -r requirements.txt"]
+    
+    Install -->|Run Tests| Test["✅ Run Tests<br/>pytest"]
+    
+    Test -->|Tests Pass| Build["🔨 Build Docker Image<br/>docker build"]
+    
+    Build -->|Tag Image| Tag["🏷️ Tag Image<br/>medical-chatbot:latest"]
+    
+    Tag -->|Push to Registry| ECR["📦 AWS ECR<br/>Elastic Container Registry"]
+    
+    ECR -->|Update Service| Deploy["🚀 Deploy to EC2<br/>Stop old container<br/>Start new container"]
+    
+    Deploy -->|Verify Health| HealthCheck["❤️ Health Check<br/>Test endpoints"]
+    
+    HealthCheck -->|Success| Production["✅ Production<br/>Live on AWS"]
+    
+    Test -->|Tests Fail| Failure["❌ Build Failed<br/>Notify Developer"]
+    
+    Failure -->|Alert| Slack["📢 Slack Notification<br/>Deployment failed"]
+    
+    Production -->|Live| Users["👥 Users<br/>Access Chatbot"]
+    
+    style Dev fill:#e8f5e9
+    style GitHub fill:#000000,color:#fff
+    style Action fill:#fff3e0
+    style Build fill:#f3e5f5
+    style ECR fill:#e3f2fd
+    style Deploy fill:#fff9c4
+    style Production fill:#c8e6c9
+    style Users fill:#c8e6c9

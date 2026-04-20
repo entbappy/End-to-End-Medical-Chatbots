@@ -1,0 +1,31 @@
+graph TD
+    A["🟢 User Query"] -->|Input Question| B["🔤 Embed Query<br/>HuggingFace Model"]
+    
+    B -->|Query Vector| C["🔍 Search Pinecone<br/>Similarity Search"]
+    
+    C -->|Top-3 Matches| D["📚 Retrieved Documents<br/>Relevant Context"]
+    
+    D -->|Context + Query| E["📋 Format Prompt<br/>System + Context + Input"]
+    
+    E -->|Complete Prompt| F["🤖 Send to GPT-4o<br/>OpenAI LLM"]
+    
+    F -->|Generate Response| G["✍️ Response Text<br/>Max 3 sentences"]
+    
+    G -->|Medical Answer| H["🟢 User Response"]
+    
+    subgraph Retrieval["🔄 Retrieval Phase"]
+        B
+        C
+        D
+    end
+    
+    subgraph Generation["💭 Generation Phase"]
+        E
+        F
+        G
+    end
+    
+    style A fill:#c8e6c9
+    style Retrieval fill:#e3f2fd
+    style Generation fill:#fff3e0
+    style H fill:#c8e6c9

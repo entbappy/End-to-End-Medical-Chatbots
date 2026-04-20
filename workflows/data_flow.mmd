@@ -1,0 +1,23 @@
+graph TD
+    Start["📁 Medical PDF Documents"] -->|Input| LoadPDF["📖 Load PDFs<br/>PyPDFLoader"]
+    
+    LoadPDF -->|Extract Text| Process["✂️ Process Text<br/>RecursiveCharacterTextSplitter"]
+    
+    Process -->|Create Chunks| Split["📝 Text Chunks<br/>500 chars + 20 overlap"]
+    
+    Split -->|Vectorize| Embed["🧠 Generate Embeddings<br/>HuggingFace all-MiniLM-L6-v2"]
+    
+    Embed -->|384-dim Vectors| Store["💾 Store in Pinecone<br/>Vector Database"]
+    
+    Store -->|Index| Pinecone[("🔍 Pinecone Index<br/>medical-chatbot")]
+    
+    Pinecone -->|Ready for Retrieval| End["✅ System Ready<br/>for Queries"]
+    
+    style Start fill:#e1f5ff
+    style LoadPDF fill:#fff3e0
+    style Process fill:#f3e5f5
+    style Split fill:#e8f5e9
+    style Embed fill:#fce4ec
+    style Store fill:#fff9c4
+    style Pinecone fill:#e0f2f1
+    style End fill:#c8e6c9

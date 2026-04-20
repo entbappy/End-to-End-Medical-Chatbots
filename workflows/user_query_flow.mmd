@@ -1,0 +1,35 @@
+graph TD
+    Start["👤 User"] -->|Types Question| Browser["🌐 Web Browser<br/>chat.html"]
+    
+    Browser -->|Click Send| FormData["📤 Form Data<br/>msg parameter"]
+    
+    FormData -->|POST /get| Flask["⚙️ Flask Route Handler<br/>app.py"]
+    
+    Flask -->|Extract Query| Extract["📝 Extract Message<br/>request.form['msg']"]
+    
+    Extract -->|Validate Input| Validate{{"✓ Valid<br/>Input?"}}
+    
+    Validate -->|Yes| Invoke["🔗 Invoke RAG Chain<br/>rag_chain.invoke"]
+    
+    Validate -->|No| Error["❌ Error Response<br/>400 Bad Request"]
+    
+    Invoke -->|Execute Pipeline| Pipeline["🔄 RAG Pipeline<br/>Retrieve + Generate"]
+    
+    Pipeline -->|Get Response| Response["💬 LLM Response<br/>Medical Answer"]
+    
+    Response -->|Format Answer| Format["📋 Format Output<br/>Plain Text"]
+    
+    Format -->|HTTP Response| HTTPResp["📤 Return Response<br/>200 OK"]
+    
+    HTTPResp -->|Display in Chat| Display["💬 Chat Display<br/>Show in Browser"]
+    
+    Display -->|User Sees Answer| End["✅ Complete"]
+    
+    Error -->|Show Error| End
+    
+    style Start fill:#e8f5e9
+    style Browser fill:#e3f2fd
+    style Flask fill:#fff3e0
+    style Pipeline fill:#f3e5f5
+    style Response fill:#fce4ec
+    style End fill:#c8e6c9
