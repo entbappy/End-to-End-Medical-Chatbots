@@ -1,0 +1,31 @@
+1. Learning Outcome:
+   - Master building a Generative AI-powered Medical Chatbot from scratch.
+   - Implement Retrieval-Augmented Generation (RAG) using LangChain for factual accuracy.
+   - Understand the integration and management of Pinecone Vector Database.
+   - Gain experience integrating OpenAI's GPT-4o for natural language understanding and generation.
+   - Learn how to process medical knowledge from unstructured PDF documents.
+   - Develop a production-ready application with Docker and AWS CI/CD.
+
+2. What you will build:
+   - An "End-to-End Medical Chatbot" that provides answers to medical queries based on specialized data.
+   - A data ingestion pipeline that transforms PDF documents into searchable vector embeddings.
+   - A RAG-based backend that retrieves relevant medical context and generates responses using LLMs.
+   - A web-based chat application with a responsive interface for user interaction.
+   - A CI/CD pipeline for automated deployment to AWS using GitHub Actions and Docker.
+
+3. Prerequisite:
+   - Proficiency in Python programming.
+   - Basic understanding of Flask or web frameworks.
+   - Familiarity with the concepts of NLP and Vector Databases.
+   - An OpenAI API key and a Pinecone API key.
+
+4. Technologies:
+   - Programming Language: Python
+   - Web Framework: Flask
+   - AI Framework: LangChain
+   - Vector Database: Pinecone
+   - LLM Provider: OpenAI (GPT-4o)
+   - Embedding Model: HuggingFace (sentence-transformers/all-MiniLM-L6-v2)
+   - Infrastructure: Docker, AWS (EC2, ECR)
+   - CI/CD: GitHub Actions
+   - Environment Management: Python-dotenv

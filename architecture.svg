@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="900" viewBox="0 0 1400 900">
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="10" refY="5" orient="auto">
+      <path d="M0,0 L10,5 L0,10 z" fill="#333" />
+    </marker>
+    <style>
+      .box { fill:#f3f7ff; stroke:#2b2b2b; stroke-width:1.5px; rx:8; }
+      .svc { fill:#fff6e5; stroke:#2b2b2b; stroke-width:1.2px; rx:6; }
+      .title { font: bold 18px sans-serif; fill:#111; }
+      .label { font: 14px sans-serif; fill:#111; }
+      .small { font: 12px sans-serif; fill:#333; }
+      .arrow { stroke:#333; stroke-width:1.4px; fill:none; marker-end:url(#arrow); }
+    </style>
+  </defs>
+
+  <!-- Header -->
+  <text x="20" y="32" class="title">Project Architecture — End-to-End Medical Chatbot</text>
+
+  <!-- Client -->
+  <rect x="40" y="70" width="300" height="120" class="box" />
+  <text x="60" y="100" class="title">Client</text>
+  <text x="60" y="125" class="label">Browser (templates/chat.html)</text>
+  <text x="60" y="145" class="small">Static: `static/`, CSS</text>
+
+  <!-- WebApp -->
+  <rect x="380" y="40" width="420" height="260" class="box" />
+  <text x="400" y="70" class="title">WebApp</text>
+  <text x="400" y="95" class="label">Flask app (`app.py`)</text>
+  <text x="400" y="115" class="small">Templates: `templates/`</text>
+  <text x="400" y="135" class="small">Source: `src/` (helper.py, prompt.py)</text>
+  <text x="400" y="155" class="small">Store manager: `store_index.py`, `data/`</text>
+
+  <!-- Services -->
+  <rect x="840" y="40" width="500" height="330" class="box" />
+  <text x="860" y="70" class="title">Services</text>
+  <rect x="860" y="95" width="460" height="70" class="svc" />
+  <text x="880" y="125" class="label">LLM / API (OpenAI or local model)</text>
+  <rect x="860" y="180" width="220" height="70" class="svc" />
+  <text x="880" y="210" class="label">Vector DB (FAISS / SQLite index in `data/`)</text>
+  <rect x="1100" y="180" width="220" height="70" class="svc" />
+  <text x="1120" y="210" class="label">Auth / Sessions</text>
+
+  <!-- Arrows and flows -->
+  <path class="arrow" d="M340 130 L380 130" />
+  <text x="320" y="120" class="small">HTTP(S) POST</text>
+
+  <path class="arrow" d="M800 110 L840 110" />
+  <text x="640" y="100" class="small">Flask routes → src/ (business logic)</text>
+
+  <!-- WebApp to LLM -->
+  <path class="arrow" d="M800 170 L840 170" />
+  <text x="695" y="160" class="small">prompt → LLM API</text>
+
+  <!-- src to VectorDB -->
+  <path class="arrow" d="M680 220 L860 220" />
+  <text x="570" y="210" class="small">embeddings / query → Vector DB</text>
+
+  <!-- VectorDB retrieval -->
+  <path class="arrow" d="M1080 250 L760 250" />
+  <text x="860" y="270" class="small">retrieval → src/ for context</text>
+
+  <!-- LLM response back to Flask -->
+  <path class="arrow" d="M1160 125 L800 125" />
+  <text x="960" y="140" class="small">responses → Flask</text>
+
+  <!-- Supporting files -->
+  <rect x="40" y="220" width="300" height="120" class="box" />
+  <text x="60" y="250" class="title">Repo / Ops</text>
+  <text x="60" y="275" class="small">`Dockerfile`, `requirements.txt`, `setup.py`</text>
+  <text x="60" y="295" class="small">`research/` notebook feeds into `store_index.py`</text>
+
+  <path class="arrow" d="M340 270 L380 180" />
+  <text x="320" y="200" class="small">build / run</text>
+
+  <!-- Legend -->
+  <rect x="40" y="360" width="1280" height="140" fill="#f7f7f7" stroke="#ddd" rx="6" />
+  <text x="60" y="390" class="title">Legend & Notes</text>
+  <text x="60" y="415" class="small">- `templates/chat.html` is the frontend chat UI.  </text>
+  <text x="60" y="435" class="small">- `src/prompt.py` composes prompts using retrieved context.</text>
+  <text x="60" y="455" class="small">- `store_index.py` manages persistence and vector index in `data/`.</text>
+  <text x="60" y="475" class="small">- Convert the SVG to PNG/JPEG locally (ImageMagick / Inkscape).</text>
+
+  <!-- Footer timestamp -->
+  <text x="1040" y="880" class="small">Generated: 2026-02-19</text>
+</svg>
